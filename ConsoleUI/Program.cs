@@ -9,40 +9,53 @@ namespace ConsoleUI
     {
         static void Main(string[] args)
         {
+
+            CarTest();
+
+            RentalDetailTest();
+
+
+           
+        }
+
+        private static void RentalDetailTest()
+        {
+            RentalDetailsManager rentalDetailsManager = new RentalDetailsManager(new EfRentalDetailsDal());
+
+            var result = rentalDetailsManager.GetAll();
+            if (result.Success)
+            {
+                foreach (var rentalDetails in result.Data)
+                {
+                    Console.WriteLine(rentalDetails.Id+ " / " +rentalDetails.RentalCustomerId + "/" + rentalDetails.CarId ) ;
+
+                }
+            }
+
+            
+        }
+
+        private static void CarTest()
+        {
             CarManager carManager = new CarManager(new EfCarDal());
 
-            foreach (var car in carManager.GetAll())
+            var result = carManager.GetCarDetails();
+
+            if (result.Success)
             {
-                Console.WriteLine(car.Description);
-            }
-            Console.WriteLine("************************");
 
-            BrandManager brandManager = new BrandManager(new EfBrandDal());
-            foreach (var brand in brandManager.GetAll())
+                foreach (var car in result.Data)
+                {
+                    Console.WriteLine(car.ModelYear + " / " + car.Description);
+                }
+
+            }
+            else
             {
-                Console.WriteLine(brand.BrandName);
+                Console.WriteLine(result.Message);
             }
-
-            Console.WriteLine("************************");
-
-            ColorManager colorManager = new ColorManager(new EfColorDal());
-            foreach (var color in colorManager.GetAll())
-            {
-                Console.WriteLine(color.ColorName);
-            }
-
-            Console.WriteLine("****************************");
-
-            GearManager gearManager = new GearManager(new EfGearDal());
-
-            foreach (var gear in gearManager.GetAll())
-            {
-                Console.WriteLine(gear.GearName);
-            }
-
-
-
         }
+
     }
 }
 

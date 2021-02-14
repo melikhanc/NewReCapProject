@@ -1,5 +1,7 @@
-﻿using DataAccess.Abstract;
+﻿using Core.DataAccess.EntityFramework;
+using DataAccess.Abstract;
 using Entites.Concrete;
+using Entites.DTOs;
 using Microsoft.EntityFrameworkCore;
 using System;
 using System.Collections.Generic;
@@ -9,54 +11,11 @@ using System.Text;
 
 namespace DataAccess.Concrete.EntityFramework
 {
-    public class EfColorDal : IColorDal
+    public class EfColorDal : EfEntityRepositoryBase<Color, NorthwindContext>, IColorDal
     {
-        public void Add(Color entity)
+        public List<ColorDetailDto> GetColorDetails()
         {
-            using (NorthwindContext context = new NorthwindContext())
-            {
-                var addedEntity = context.Entry(entity);
-                addedEntity.State = EntityState.Added;
-                context.SaveChanges();
-            }
-        }
-
-        public void Delete(Color entity)
-        {
-            using (NorthwindContext context = new NorthwindContext())
-            {
-                var deletedEntity = context.Entry(entity);
-                deletedEntity.State = EntityState.Deleted;
-                context.SaveChanges();
-            }
-        }
-
-        public Color Get(Expression<Func<Color, bool>> filter)
-        {
-            using (NorthwindContext context = new NorthwindContext())
-            {
-
-                return context.Set<Color>().SingleOrDefault(filter);
-            }
-        }
-
-        public List<Color> GetAll(Expression<Func<Color, bool>> filter = null)
-        {
-            using (NorthwindContext context = new NorthwindContext())
-            {
-                //Turnary operatörü kullanılacak
-                return filter == null ? context.Set<Color>().ToList() : context.Set<Color>().Where(filter).ToList();
-            }
-        }
-
-        public void Update(Color entity)
-        {
-            using (NorthwindContext context = new NorthwindContext())
-            {
-                var updatedEntity = context.Entry(entity);
-                updatedEntity.State = EntityState.Modified;
-                context.SaveChanges();
-            }
+            throw new NotImplementedException();
         }
     }
 }

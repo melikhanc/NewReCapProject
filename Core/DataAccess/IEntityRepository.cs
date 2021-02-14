@@ -1,10 +1,11 @@
-﻿using Entites.Abstract;
+﻿
+using Core.Entities;
 using System;
 using System.Collections.Generic;
 using System.Linq.Expressions;
 using System.Text;
 
-namespace DataAccess.Abstract
+namespace Core.DataAccess
 {
     /*<T> yerine sınırlan dırmamız gerekecek Herkes T yerine istediğini yazabilir. Niye yazıyor lan Yazmasın.
      <T> yi filtreleme işlemni yapoacağız. (Generic Constraint ) Nasıl yapılır?
@@ -18,6 +19,11 @@ namespace DataAccess.Abstract
     Bunu Engellemek için 
     public interface IEntityRepository<T> where T:class,IEntity,new() yazarsak sadece oşuşturduğumuz classları yazabiliriz
     ÇÜNKÜ IEntity BİR İMNTERFACE VE İNTERFACELER NEW LENEMEZ.
+
+    CORE KATMANI DİĞER KATMANLARI REFERANS ALMAZ.
+    CORE KATMANI DİĞER KATMANLARI REFERANS ALMAZ.
+    CORE KATMANI DİĞER KATMANLARI REFERANS ALMAZ.
+
      */
     public interface IEntityRepository<T> where T:class,IEntity,new()
     {

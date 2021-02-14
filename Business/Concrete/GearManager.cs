@@ -1,4 +1,6 @@
 ﻿using Business.Abstract;
+using Business.Constants;
+using Core.Utilities.Results;
 using DataAccess.Abstract;
 using DataAccess.Concrete.InMemory;
 using Entites.Concrete;
@@ -17,10 +19,15 @@ namespace Business.Concrete
             _gearDal = gearDal;
         }
 
-        public List<Gear> GetAll()
+        public IDataResult< List<Gear>> GetAll()
         {
 
-            return _gearDal.GetAll();
+            return new SuccessDataResult<List<Gear>>(Messages.Listed);
+        }
+
+        public IDataResult < Gear> GetById(int gearId)
+        {
+            return new SuccessDataResult<Gear> (_gearDal.Get(g => g.GearId == gearId));
         }
     }
 }
