@@ -37,7 +37,7 @@ namespace Business.Concrete
 
         IDataResult<List<Users>> IUsersService.GeyById(int id)
         {
-            throw new NotImplementedException();
+            return new SuccessDataResult<List<Users>>(_usersDal.GetAll(u => u.Id == id));
         }
     }
 }

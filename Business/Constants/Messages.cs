@@ -10,6 +10,7 @@ namespace Business.Constants
         public static string Invalid = "Geçersiz veri";
         public static string MainteinceTime = "Sistem Bakımda";
         public static string Listed = "Listeleme İşlemi Başarılı";
+        public static string Deleted = "Silme işlemi başarılı";
 
     }
 }

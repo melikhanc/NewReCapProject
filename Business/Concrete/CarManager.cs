@@ -32,12 +32,12 @@ namespace Business.Concrete
              {
                  Console.WriteLine("Belirttiğiniz araba ekleme standartlarına uymamaktadır.");
              }*/
-            if (car.Description.Length<2)
+           /* if (car.Description.Length<2)
             {
 
                 return new ErrorResult(Messages.Invalid);
 
-            }
+            }*/
             _carDal.Add(car);
             return new SuccessResult(Messages.Added);
             
@@ -46,9 +46,15 @@ namespace Business.Concrete
            
         }
 
+        public IResult Deleted(Car car)
+        {
+            _carDal.Delete(car);
+            return new SuccessResult(Messages.Deleted);
+        }
+
         public IDataResult< List<Car>> GetAll()
         {
-            if (DateTime.Now.Hour==22)
+            if (DateTime.Now.Hour==3)
             {
                 return new ErrorDataResult<List<Car>>(Messages.MainteinceTime);
             }

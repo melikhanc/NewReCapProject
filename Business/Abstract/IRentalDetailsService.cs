@@ -11,5 +11,10 @@ namespace Business.Abstract
 
         IDataResult<List<RentalDetails>> GetAll();
         IResult Add(RentalDetails rentalDetails);
+
+        IDataResult<List<RentalDetails>> GetRentalDetailsByCarsId(int id);
+
+        IResult Delete(RentalDetails rentalDetails);
+       
     }
 }
