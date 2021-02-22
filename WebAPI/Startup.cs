@@ -31,12 +31,12 @@ namespace WebAPI
         {
             services.AddControllers();
 
-            services.AddSingleton<ICarService,CarManager>();
+           /* services.AddSingleton<ICarService,CarManager>();
             services.AddSingleton<ICarDal, EfCarDal>();
             services.AddSingleton<IRentalDetailsService, RentalDetailsManager>();
             services.AddSingleton<IRentalDetailsDal, EfRentalDetailsDal>();
             services.AddSingleton<IUsersService, UsersManager>();
-            services.AddSingleton<IUsersDal, EfUsersDal>();
+            services.AddSingleton<IUsersDal, EfUsersDal>();*/
 
         }
 

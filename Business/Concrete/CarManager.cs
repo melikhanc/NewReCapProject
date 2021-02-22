@@ -1,10 +1,14 @@
 ﻿using Business.Abstract;
 using Business.Constants;
+using Business.ValidationRules.FluentValidation;
+using Core.Aspects.Autofac.Validation;
+using Core.CrossCuttingConcerns.Validation;
 using Core.Utilities.Results;
 using DataAccess.Abstract;
 using DataAccess.Concrete.InMemory;
 using Entites.Concrete;
 using Entites.DTOs;
+using FluentValidation;
 using System;
 using System.Collections.Generic;
 using System.Text;
@@ -20,6 +24,8 @@ namespace Business.Concrete
             _carDal = carDal;
         }
 
+
+        [ValidationAspect(typeof(CarValidator))]
         public IResult Add(Car car)
         {
             /* if (car.Description.Length > 2 && car.DailyPrice >0)
@@ -32,12 +38,23 @@ namespace Business.Concrete
              {
                  Console.WriteLine("Belirttiğiniz araba ekleme standartlarına uymamaktadır.");
              }*/
-           /* if (car.Description.Length<2)
+            /* if (car.Description.Length<2)
+             {
+
+                 return new ErrorResult(Messages.Invalid);
+
+             }*/
+
+            /*if (car.DailyPrice < 7500)
             {
-
                 return new ErrorResult(Messages.Invalid);
-
             }*/
+
+
+
+            //ValidationTool.Validate(new CarValidator(), car);
+
+
             _carDal.Add(car);
             return new SuccessResult(Messages.Added);
             
@@ -54,10 +71,7 @@ namespace Business.Concrete
 
         public IDataResult< List<Car>> GetAll()
         {
-            if (DateTime.Now.Hour==3)
-            {
-                return new ErrorDataResult<List<Car>>(Messages.MainteinceTime);
-            }
+           
 
             return new SuccessDataResult<List<Car>>(_carDal.GetAll(), Messages.Listed);
         }
